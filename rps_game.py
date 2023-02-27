@@ -396,7 +396,7 @@ if __name__ == '__main__':
     ## Sets a title for the GUI
     Window.title("Rock - Paper - Scissors")
     ## Welcome statement
-    welcome_label=Label(Window, foreground='black',background='white', text='Play Rock, Paper and Scissors! --Team 3 Assignment 1')
+    welcome_label=Label(Window, foreground='black',background='white', text='Let us play Rock, Paper and Scissors! --Team 3 Assignment 1')
     welcome_label.place(x = 40,y = 60) 
     welcome_label.pack()
     ## Call the welcome function
