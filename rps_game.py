@@ -19,9 +19,9 @@ import tkinter as tk
 from tkinter import *
 import numpy as np
 from bayes_net import bayes_strategy
-from naive_bayes_net import naive_bayes
+
 ## Uncomment the following line once you have implemented naive_bayes_net as well as the naive_bayes_strategy function
-# from naive_bayes_net import naive_bayes_strategy 
+from naive_bayes_net import naive_bayes_strategy 
 
 def save_data(hm, cm):
     '''
@@ -180,6 +180,7 @@ def get_human_move(human_move, tt, variable):
     elif variable.get() == 'bayes_net':
         if count == 0: ## Round 1, choose random move for Bayes Net
             human_move = get_computer_move()
+            computer_move = get_computer_move()
         else:
             human_move = get_bayes_net_human_move(last_round_human_move, last_round_computer_move, variable)
         ## Change the following line to implement either of the AI strategy moves, you need to get this option as an input from the user or manually assign a strategy according to a combination. 
@@ -187,6 +188,7 @@ def get_human_move(human_move, tt, variable):
     elif variable.get() == 'naive_bayes_net':
         if count == 0: ## Round 1, choose random move for Naive Bayes Net
             human_move = get_computer_move()
+            computer_move = get_computer_move()
         else:
             human_move = get_bayes_net_human_move(last_round_human_move, last_round_computer_move, variable)
 
@@ -342,7 +344,7 @@ def welcome():
                 "random"
                 ]
     variable = StringVar(Window)
-    variable.set(OPTIONS[3]) # default value random
+    variable.set(OPTIONS[4]) # default value random
     strats = OptionMenu(Window, variable, *OPTIONS)
     strats.pack()
     strats.place(x = 310,y = 60) 
