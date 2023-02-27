@@ -175,7 +175,11 @@ def get_human_move(human_move, tt, variable):
             human_move = get_bayes_net_human_move(last_round_human_move, last_round_computer_move, variable)
         ## Change the following line to implement either of the AI strategy moves, you need to get this option as an input from the user or manually assign a strategy according to a combination. 
         # If you choose to manually enter a strategy to use, change get_ai_move() accordingly
-        computer_move = get_computer_move()  
+    elif variable.get() == 'naive_bayes_net':
+        if count == 0: ## Round 1, choose random move for Naive Bayes Net
+            human_move = get_computer_move()
+        else:
+            human_move = get_bayes_net_human_move(last_round_human_move, last_round_computer_move, variable)
 
     # Select the winner
     winner = select_winner(computer_move, human_move)
@@ -325,6 +329,7 @@ def welcome():
                 "win_shift_lose_shift",
                 "win_stay_lose_shift",
                 "bayes_net",
+                "naive_bayes_net",
                 "random"
                 ]
     variable = StringVar(Window)
