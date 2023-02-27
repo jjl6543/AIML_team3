@@ -322,7 +322,7 @@ def welcome():
     '''
     This welcome function asks you to enter the number of rounds you would like to play and enables you to start playing the game
     '''
-    games_label=Label(Window, foreground='black',background='white', text='Enter the names of rounds you want to play:') 
+    games_label=Label(Window, foreground='black',background='white', text='Enter the number of rounds you want to play:') 
     games_label.place(x = 40,y = 100)
 
     user_entry = Entry(Window, width = 5)
@@ -396,7 +396,7 @@ if __name__ == '__main__':
     ## Sets a title for the GUI
     Window.title("Rock - Paper - Scissors")
     ## Welcome statement
-    welcome_label=Label(Window, foreground='black',background='white', text='Welcome to Rock, Paper, Scissors! --Presented to you by 24787 TA/CA')
+    welcome_label=Label(Window, foreground='black',background='white', text='Play Rock, Paper and Scissors! --Team 3 Assignment 1')
     welcome_label.place(x = 40,y = 60) 
     welcome_label.pack()
     ## Call the welcome function
