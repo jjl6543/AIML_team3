@@ -19,6 +19,7 @@ import tkinter as tk
 from tkinter import *
 import numpy as np
 from bayes_net import bayes_strategy
+from naive_bayes_net import naive_bayes
 ## Uncomment the following line once you have implemented naive_bayes_net as well as the naive_bayes_strategy function
 # from naive_bayes_net import naive_bayes_strategy 
 
@@ -106,14 +107,24 @@ def get_bayes_net_human_move(human_move, computer_move, variable):
         To Do: refer to assignemnt pdf for instructions. Please fill out the rest of the logic for this case and return a move to play against according to the instructions.
         '''
         computer_pred_move = bayes_strategy(human_move, computer_move)
-
-        return 'rock'
+        if computer_pred_move == 'rock':
+            return 'paper'
+        elif computer_pred_move == 'paper':
+            return 'scissors'
+        elif computer_pred_move == 'scissors':
+            return 'rock'
     
     elif variable.get() == 'naive_bayes_net':
         '''
         To Do: refer to assignemnt pdf for instructions
         '''
-        return 'rock'
+        computer_pred_move = naive_bayes(human_move, computer_move)
+        if computer_pred_move == 'rock':
+            return 'paper'
+        elif computer_pred_move == 'paper':
+            return 'scissors'
+        elif computer_pred_move == 'scissors':
+            return 'rock'
 
 def get_real_time_bayes_net_human_move():
     '''
