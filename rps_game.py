@@ -13,7 +13,7 @@ To modify the GUI, please refer to:
 Tkinter Documentation: https://docs.python.org/3/library/tk.html
 """
 
-## Import required libraries
+## Import required libraries 
 import random
 import tkinter as tk
 from tkinter import *
