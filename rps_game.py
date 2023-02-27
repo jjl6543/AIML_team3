@@ -13,7 +13,7 @@ To modify the GUI, please refer to:
 Tkinter Documentation: https://docs.python.org/3/library/tk.html
 """
 
-## Import required libraries
+## Import required libraries 
 import random
 import tkinter as tk
 from tkinter import *
@@ -139,7 +139,7 @@ def get_bayes_net_human_move(human_move, computer_move, variable):
         '''
         To Do: refer to assignemnt pdf for instructions
         '''
-        computer_pred_move = naive_bayes(human_move, computer_move)
+        computer_pred_move = naive_bayes_strategy(human_move, computer_move)
         if computer_pred_move == 'rock':
             return 'paper'
         elif computer_pred_move == 'paper':
@@ -322,7 +322,7 @@ def welcome():
     '''
     This welcome function asks you to enter the number of rounds you would like to play and enables you to start playing the game
     '''
-    games_label=Label(Window, foreground='black',background='white', text='Enter the names of rounds you want to play:') 
+    games_label=Label(Window, foreground='black',background='white', text='Enter the number of rounds you want to play:') 
     games_label.place(x = 40,y = 100)
 
     user_entry = Entry(Window, width = 5)
@@ -396,7 +396,7 @@ if __name__ == '__main__':
     ## Sets a title for the GUI
     Window.title("Rock - Paper - Scissors")
     ## Welcome statement
-    welcome_label=Label(Window, foreground='black',background='white', text='Welcome to Rock, Paper, Scissors! --Presented to you by 24787 TA/CA')
+    welcome_label=Label(Window, foreground='black',background='white', text='Let us play Rock, Paper and Scissors! --Team 3 Assignment 1')
     welcome_label.place(x = 40,y = 60) 
     welcome_label.pack()
     ## Call the welcome function
