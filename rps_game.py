@@ -84,10 +84,22 @@ def get_ai_move(round_winner, round_human_move, variable):
     '''
     To Do: Implement the win-stay, lose-shift or the win-shift, lose-shift strategy
     '''
+    winner = select_winner(computer_move, human_move)
+    # a = 1 represents win stay lose shift
+    # a = 2 represents win shift lose shift
     if variable.get() == 'win_stay_lose_shift':
         '''
         Win Stay Lose Shift Strategy: If you win, play the move you just played, else play the move that will beat your opponent's previous move
         '''
+        if winner == 'tie':
+            return computer_move
+        
+        elif winner == 'computer':
+            return computer_move
+
+        elif winner == 'human':
+            index = poss.index(human_move)
+            return poss[index - 2]
         return 'rock'
 
     elif variable.get() == 'win_shift_lose_shift':
