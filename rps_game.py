@@ -139,7 +139,7 @@ def get_bayes_net_human_move(human_move, computer_move, variable):
         '''
         To Do: refer to assignemnt pdf for instructions
         '''
-        computer_pred_move = naive_bayes(human_move, computer_move)
+        computer_pred_move = naive_bayes_strategy(human_move, computer_move)
         if computer_pred_move == 'rock':
             return 'paper'
         elif computer_pred_move == 'paper':
