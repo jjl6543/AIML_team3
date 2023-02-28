@@ -355,8 +355,7 @@ def welcome():
                 "bayes_net vs win_shift_lose_shift",
                 "bayes_net vs win_stay_lose_shift",
                 "naive_bayes_net vs win_shift_lose_shift",
-                "naive_bayes_net vs win_stay_lose_shift",
-                "random"
+                "naive_bayes_net vs win_stay_lose_shift"
                 ]
     variable = StringVar(Window)
     variable.set("Bayes vs AI") # default value random
