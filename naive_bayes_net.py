@@ -4,7 +4,8 @@ from pomegranate import *
 
 
 def naive_bayes_strategy(A,B):
-    data = np.load("data.npy", allow_pickle=True) ## Load historical data
+    #data = np.load("data.npy", allow_pickle=True) ## Load historical data
+    data = np.load("final_rps.npy", allow_pickle=True) ## Load user data
     data = np.concatenate((data[:-1, :], data[1:,1].reshape(-1,0)), axis=1) ## Re-arrange the array such that column 1 contains previous human moves, column 2 contains previous computer moves and column 3 contains the next computer moves
 
 
