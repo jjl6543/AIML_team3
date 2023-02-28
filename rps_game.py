@@ -85,7 +85,7 @@ def get_ai_move(round_winner, round_human_move, variable):
     To Do: Implement the win-stay, lose-shift or the win-shift, lose-shift strategy
     '''
     poss = ['rock', 'paper', 'scissors']
-    if variable.get() == 'win_stay_lose_shift':
+    if variable == 'win_stay_lose_shift':
         '''
         Win Stay Lose Shift Strategy: If you win, play the move you just played, else play the move that will beat your opponent's previous move
         '''
@@ -100,7 +100,7 @@ def get_ai_move(round_winner, round_human_move, variable):
             index = poss.index(round_human_move)
             return poss[index - 2]
 
-    elif variable.get() == 'win_shift_lose_shift':
+    elif variable == 'win_shift_lose_shift':
         '''
         Win Shift Lose Shift Strategy: If you win, play the move your opponent played during the previous move, else play the move that will beat your opponent's previous move
         '''
@@ -123,7 +123,7 @@ def get_bayes_net_human_move(human_move, computer_move, variable):
     To Do: Implement Bayesian Network that takes as input the previous round's moves and predicts the next move you should play
     The choice of Bayes network to use (V-DAG (Prediction|Human Move and Computer Move) or Naive Bayes (Inverted V-DAG) (Human Move|Prediction)x(Computer Move|Prediction))
     '''
-    if variable.get() == 'bayes_net':
+    if variable == 'bayes_net':
         '''
         To Do: refer to assignemnt pdf for instructions. Please fill out the rest of the logic for this case and return a move to play against according to the instructions.
         '''
@@ -135,7 +135,7 @@ def get_bayes_net_human_move(human_move, computer_move, variable):
         elif computer_pred_move == 'scissors':
             return 'rock'
     
-    elif variable.get() == 'naive_bayes_net':
+    elif variable == 'naive_bayes_net':
         '''
         To Do: refer to assignemnt pdf for instructions
         '''
@@ -167,30 +167,45 @@ def get_human_move(human_move, tt, variable):
     # Get computer move
     if variable.get() == 'random':
         computer_move = get_computer_move()
-    elif variable.get() == 'win_stay_lose_shift':
+    elif variable.get() == "bayes_net vs win_shift_lose_shift":
         if count == 0: ## Round 1, choose random move for AI
             computer_move = get_computer_move()
+            human_move = get_computer_move()
         else:
-            computer_move = get_ai_move(last_round_winner, last_round_human_move, variable)
-    elif variable.get() == 'win_shift_lose_shift':
+            vari = "bayes_net"
+            varia = "win_shift_lose_shift"
+            human_move = get_bayes_net_human_move(last_round_human_move, last_round_computer_move, vari)
+            computer_move = get_ai_move(last_round_winner, last_round_human_move, varia)
+    elif variable.get() == "bayes_net vs win_stay_lose_shift":
         if count == 0: ## Round 1, choose random move for AI
-            computer_move = get_computer_move()
-        else:
-            computer_move = get_ai_move(last_round_winner, last_round_human_move, variable)
-    elif variable.get() == 'bayes_net':
-        if count == 0: ## Round 1, choose random move for Bayes Net
             human_move = get_computer_move()
             computer_move = get_computer_move()
         else:
-            human_move = get_bayes_net_human_move(last_round_human_move, last_round_computer_move, variable)
+            vari = "bayes_net"
+            varia = "win_stay_lose_shift"
+            human_move = get_bayes_net_human_move(last_round_human_move, last_round_computer_move, vari)
+            computer_move = get_ai_move(last_round_winner, last_round_human_move, varia)
+    elif variable.get() == "naive_bayes_net vs win_shift_lose_shift":
+        if count == 0: ## Round 1, choose random move for Bayes Net
+            human_move = get_computer_move()
+            computer_move = get_computer_move()
+            print(count)
+        else:
+            vari = "naive_bayes_net"
+            varia = "win_shift_lose_shift"
+            human_move = get_bayes_net_human_move(last_round_human_move, last_round_computer_move, vari)
+            computer_move = get_ai_move(last_round_winner, last_round_human_move, varia)
         ## Change the following line to implement either of the AI strategy moves, you need to get this option as an input from the user or manually assign a strategy according to a combination. 
         # If you choose to manually enter a strategy to use, change get_ai_move() accordingly
-    elif variable.get() == 'naive_bayes_net':
+    elif variable.get() == "naive_bayes_net vs win_stay_lose_shift":
         if count == 0: ## Round 1, choose random move for Naive Bayes Net
             human_move = get_computer_move()
             computer_move = get_computer_move()
         else:
-            human_move = get_bayes_net_human_move(last_round_human_move, last_round_computer_move, variable)
+            vari = "naive_bayes_net"
+            varia = "win_stay_lose_shift"
+            human_move = get_bayes_net_human_move(last_round_human_move, last_round_computer_move, vari)
+            computer_move = get_ai_move(last_round_winner, last_round_human_move, varia)
 
     # Select the winner
     winner = select_winner(computer_move, human_move)
@@ -286,7 +301,7 @@ def display_module(tt,variable):
     round_label=Label(Window, foreground='black',background='white', text='Round {}'.format(count+1))
     round_label.place(x = 40, y = 280)
 
-    select_label=Label(Window, foreground='black',background='white', text='Enter your move (rock|paper|scissors):')
+    select_label=Label(Window, foreground='black',background='white', text='Click the "Go!" button to proceed')
     select_label.place(x = 40, y = 240)
 
     if variable.get() == 'bayes_net':
@@ -295,16 +310,16 @@ def display_module(tt,variable):
         labels2.extend([round_label,select_label,bayes_button])
 
     else:
-        rock_button=Button(Window, foreground='black',background='white',text='Rock',command=lambda t= "rock": get_human_move(t,tt,variable))
+        rock_button=Button(Window, foreground='black',background='white',text='Go!',command=lambda t= "rock": get_human_move(t,tt,variable))
         rock_button.place(x = 330, y = 240)
 
-        paper_button=Button(Window, foreground='black',background='white',text='Paper',command=lambda t= "paper": get_human_move(t,tt,variable))
-        paper_button.place(x = 430, y = 240)
+        # paper_button=Button(Window, foreground='black',background='white',text='Paper',command=lambda t= "paper": get_human_move(t,tt,variable))
+        # paper_button.place(x = 430, y = 240)
 
-        scissors_button=Button(Window, foreground='black',background='white',text='Scissors',command= lambda t= "scissors": get_human_move(t,tt,variable))
-        scissors_button.place(x = 530, y = 240)
+        # scissors_button=Button(Window, foreground='black',background='white',text='Scissors',command= lambda t= "scissors": get_human_move(t,tt,variable))
+        # scissors_button.place(x = 530, y = 240)
 
-        labels2.extend([round_label,select_label,paper_button,scissors_button,rock_button])
+        # labels2.extend([round_label,select_label,paper_button,scissors_button,rock_button])
 
 def reset_game(xx):
     '''
@@ -315,7 +330,7 @@ def reset_game(xx):
     if xx == "reset":
         for label in labels2:
             label.destroy()
-    np.array(data).dump(open('data.npy', 'wb'))
+    np.array(data).dump(open('saved_data.npy', 'wb'))
     welcome()
 
 def welcome():
@@ -332,19 +347,19 @@ def welcome():
     global labels
     labels = []
 
-    strats_label=Label(Window, foreground='black',background='white', text='Choose a strategy you wish to play against:') 
+    strats_label=Label(Window, foreground='black',background='white', text='Choose the combiation of strategies you \nwant to be played') 
     strats_label.place(x = 40,y = 60)
 
     ## Select Strategy
     OPTIONS = [
-                "win_shift_lose_shift",
-                "win_stay_lose_shift",
-                "bayes_net",
-                "naive_bayes_net",
+                "bayes_net vs win_shift_lose_shift",
+                "bayes_net vs win_stay_lose_shift",
+                "naive_bayes_net vs win_shift_lose_shift",
+                "naive_bayes_net vs win_stay_lose_shift",
                 "random"
                 ]
     variable = StringVar(Window)
-    variable.set(OPTIONS[4]) # default value random
+    variable.set("Bayes vs AI") # default value random
     strats = OptionMenu(Window, variable, *OPTIONS)
     strats.pack()
     strats.place(x = 310,y = 60) 
