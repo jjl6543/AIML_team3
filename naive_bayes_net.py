@@ -59,7 +59,7 @@ def naive_bayes_strategy(A,B):
         # P(Y)
         prb[poss.index(elem), 2] = y
 
-    #print(prb)
+    print(prb)
 
     P_YAB = prb[:,0]* prb[:,1]* prb[:,2]
     #print(P_YAB)

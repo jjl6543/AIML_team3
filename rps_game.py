@@ -330,7 +330,7 @@ def reset_game(xx):
     if xx == "reset":
         for label in labels2:
             label.destroy()
-    np.array(data).dump(open('bayes_vs_stay.npy', 'wb'))
+    np.array(data).dump(open('naive_bayes_vs_stay.npy', 'wb'))
     welcome()
 
 def welcome():

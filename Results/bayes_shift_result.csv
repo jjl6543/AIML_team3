@@ -1,0 +1,11 @@
+,0,1,2
+0,rock,rock,tie
+1,rock,rock,tie
+2,rock,paper,computer
+3,scissors,rock,computer
+4,scissors,scissors,tie
+5,scissors,rock,computer
+6,scissors,scissors,tie
+7,scissors,paper,human
+8,paper,rock,human
+9,paper,scissors,computer
