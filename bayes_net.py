@@ -12,10 +12,10 @@ from pomegranate import *
 #data = np.load("data.npy", allow_pickle=True) ## Load historical data
 data = np.load("final_rps.npy", allow_pickle=True) ## Load user data
 # Third column Player B's move
-#data = np.concatenate((data[:-1, :], data[1:,1].reshape(-1,1)), axis=1) ## Re-arrange the array such that column 1 contains previous human moves, column 2 contains previous computer moves and column 3 contains the next computer moves
+data = np.concatenate((data[:-1, :], data[1:,1].reshape(-1,1)), axis=1) ## Re-arrange the array such that column 1 contains previous human moves, column 2 contains previous computer moves and column 3 contains the next computer moves
 
 # Third column Player A's move
-data = np.concatenate((data[:-1, :], data[1:,0].reshape(-1,1)), axis=1) ## Re-arrange the array such that column 1 contains previous human moves, column 2 contains previous computer moves and column 3 contains the next computer moves
+# data = np.concatenate((data[:-1, :], data[1:,0].reshape(-1,1)), axis=1) ## Re-arrange the array such that column 1 contains previous human moves, column 2 contains previous computer moves and column 3 contains the next computer moves
 
 ###########
 
@@ -75,6 +75,7 @@ model.add_edge(s2, s3)
 # Finalize the Bayesian Network
 model.bake()
 model.fit(data)
+# print ("Bayesian Network Summary: {}".format(model))
 
 
 def bayes_strategy(A_move, B_move):

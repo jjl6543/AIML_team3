@@ -90,11 +90,11 @@ def get_ai_move(round_winner, round_human_move, variable):
         Win Stay Lose Shift Strategy: If you win, play the move you just played, else play the move that will beat your opponent's previous move
         '''
         if round_winner == 'tie':
-            return round_human_move
+            return get_computer_move()
         
         elif round_winner == 'computer':
             index = poss.index(round_human_move)
-            return poss[index - 1]
+            return poss[index - 2]
 
         elif round_winner == 'human':
             index = poss.index(round_human_move)
@@ -106,7 +106,7 @@ def get_ai_move(round_winner, round_human_move, variable):
         '''
         
         if round_winner == 'tie':
-            return round_human_move
+            return get_computer_move()
         
         elif round_winner == 'computer':
             return round_human_move
@@ -330,7 +330,7 @@ def reset_game(xx):
     if xx == "reset":
         for label in labels2:
             label.destroy()
-    np.array(data).dump(open('saved_data.npy', 'wb'))
+    np.array(data).dump(open('bayes_vs_stay.npy', 'wb'))
     welcome()
 
 def welcome():
@@ -352,8 +352,8 @@ def welcome():
 
     ## Select Strategy
     OPTIONS = [
-                "bayes_net vs win_shift_lose_shift",
-                "bayes_net vs win_stay_lose_shift",
+                "bayes_net vs win_shift_lose_shift",    #no ties
+                "bayes_net vs win_stay_lose_shift", #bayes does not shift prediction
                 "naive_bayes_net vs win_shift_lose_shift",
                 "naive_bayes_net vs win_stay_lose_shift"
                 ]

@@ -20,7 +20,7 @@ convert_file = np.load("final_rps.npy",allow_pickle=True)
 
 
 # Third column Player A's move
-data1 = np.concatenate((convert_file[:-1, :], convert_file[1:,0].reshape(-1,1)), axis=1) ## Re-arrange the array such that column 1 contains previous human moves, column 2 contains previous computer moves and column 3 contains the next computer moves
+#data1 = np.concatenate((convert_file[:-1, :], convert_file[1:,0].reshape(-1,1)), axis=1) ## Re-arrange the array such that column 1 contains previous human moves, column 2 contains previous computer moves and column 3 contains the next computer moves
 
 
-print(data1)
+print(convert_file)
